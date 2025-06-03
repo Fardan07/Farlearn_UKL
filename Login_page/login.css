@@ -1,0 +1,90 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('../front_web/Background.png') no-repeat center center fixed;
+    background-size: cover; 
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.96);
+    padding: 50px 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: #2e7d32;
+    margin-bottom: 30px;
+    font-size: 26px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #a5d6a7;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    border-color: #66bb6a;
+    outline: none;
+    box-shadow: 0 0 5px rgba(102, 187, 106, 0.5);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #388e3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #2e7d32;
+    transform: scale(1.03);
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #4a148c;
+}
+
+a:hover {
+    text-decoration: underline;
+}
