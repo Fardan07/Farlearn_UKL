@@ -34,8 +34,14 @@
                 <p>Riwayat dan info donasi</p>
             </div>
         </a>
+             <a href="http://localhost/farlearn/UKL/ukl.php" class="card card-link">
+            <div class="card-content">
+                <h3>Kembali</h3>
+                <p>Kembali Ke Halaman Utama</p>
+            </div>
+        </a>
     </div>
-     <a href="http://localhost/farlearn/UKL/ukl.php" class="btn btn-back">Kembali</a>
+
 
 </body>
 </html>
