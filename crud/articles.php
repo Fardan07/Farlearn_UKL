@@ -37,14 +37,14 @@ if (isset($_GET['edit'])) {
     <h2><?= $id ? 'Edit Artikel' : 'Tambah Artikel' ?></h2>
     <form method="POST" action="article_action.php" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= $id ?>">
-        <input type="text" name="title" placeholder="Judul Artikel" value="<?= $title ?>"><br>
+        <input type="text" name="title" placeholder="Judul Artikel" value="<?= $title ?>"required><br>
         <textarea name="description" placeholder="Deskripsi Artikel"><?= $description ?></textarea><br>
-        <input type="file" name="image"><br>
-        <input type="text" name="tags" placeholder="Tag" value="<?= $tags ?>"><br>
-        <input type="text" name="url" placeholder="URL" value="<?= $url ?>"><br>
-        <textarea name="text" placeholder="Isi Artikel Lengkap"><?= $text ?></textarea><br>
-        <input type="text" name="source" placeholder="Sumber" value="<?= $source ?>"><br>
-        <input type="text" name="reading_time" placeholder="Estimasi Waktu Baca" value="<?= $reading_time ?>"><br>
+        <input type="file" name="image" required><br>
+        <input type="text" name="tags" placeholder="Tag" value="<?= $tags ?>"required><br>
+        <input type="text" name="url" placeholder="URL" value="<?= $url ?>"required><br>
+        <textarea name="text" placeholder="Isi Artikel Lengkap"required><?= $text ?></textarea><br>
+        <input type="text" name="source" placeholder="Sumber" required value="<?= $source ?>"><br>
+        <input type="text" name="reading_time" placeholder="Estimasi Waktu Baca" required value="<?= $reading_time ?>"><br>
         <button type="submit" name="<?= $id ? 'update' : 'create' ?>">Simpan</button>
     </form>
    

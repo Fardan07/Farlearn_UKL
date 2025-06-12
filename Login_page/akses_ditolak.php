@@ -10,6 +10,10 @@
         <h1>Akses Ditolak</h1>
         <p>Anda harus login terlebih dahulu untuk mengakses fitur ini.</p>
         <a href="login.php" class="btn">Login Sekarang</a>
+        <br>
+        <br>
+        <br>
+        <a href="../UKL/ukl.php" class="btn">Kembali</a>
     </div>
 </body>
 </html>

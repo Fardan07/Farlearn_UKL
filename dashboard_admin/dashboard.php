@@ -34,6 +34,12 @@
                 <p>Riwayat dan info donasi</p>
             </div>
         </a>
+         <a href="admin_orders.php" class="card card-link">
+            <div class="card-content">
+                <h3>Orderan</h3>
+                <p>Orderan Buku Pelanggan</p>
+            </div>
+        </a>
              <a href="http://localhost/farlearn/UKL/ukl.php" class="card card-link">
             <div class="card-content">
                 <h3>Kembali</h3>

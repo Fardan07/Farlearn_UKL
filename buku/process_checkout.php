@@ -1,78 +1,77 @@
 <?php
-include 'db.php';
 session_start();
+require '../Login_Page/config.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_SESSION['user_id'] ?? null;
-    $user_email = $_POST['user_email'];
-    $full_name = $_POST['full_name'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    $city = $_POST['city'];
-    $postal_code = $_POST['postal_code'];
-    $payment_method = $_POST['payment_method'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Ambil data user dari form
+    $user_id = $_POST['user_id'] ?? null;
+    $email = $_POST['user_email'] ?? '';
+    $full_name = $_POST['full_name'] ?? '';
+    $phone = $_POST['phone'] ?? '';
+    $address = $_POST['address'] ?? '';
+    $city = $_POST['city'] ?? '';
+    $postal_code = $_POST['postal_code'] ?? '';
+    $payment_method = $_POST['payment_method'] ?? '';
 
-    // Validasi total_price
-    if (!isset($_POST['total_price']) || !is_numeric($_POST['total_price'])) {
-        die("Total harga tidak valid.");
+    if (!$user_id || !$email || !$full_name || !$phone || !$address || !$city || !$postal_code || !$payment_method) {
+        die("Semua data wajib diisi!");
     }
-    $total_price = floatval($_POST['total_price']);
 
-    // Validasi book_ids
-    if (!isset($_POST['book_ids']) || !is_array($_POST['book_ids'])) {
-        die("Data buku tidak valid.");
+    // Ambil isi keranjang dari session
+    $cart = $_SESSION['cart'] ?? [];
+
+    if (empty($cart)) {
+        die("Keranjang kosong, tidak bisa checkout.");
+    }
+
+    // Hitung total harga dari database agar tidak bisa dimanipulasi
+    $book_ids = array_keys($cart);
+    $total_price = 0;
+    $items = [];
+
+    if (!empty($book_ids)) {
+        $ids_str = implode(',', array_map('intval', $book_ids));
+        $query = $conn->query("SELECT * FROM books WHERE id IN ($ids_str)");
+
+        while ($row = $query->fetch_assoc()) {
+            $book_id = $row['id'];
+            $qty = $cart[$book_id];
+            $subtotal = $row['price'] * $qty;
+            $total_price += $subtotal;
+
+            $items[] = [
+                'book_id' => $book_id,
+                'quantity' => $qty,
+                'price' => $row['price']
+                // kolom subtotal dihapus dari sini
+            ];
+        }
     }
 
     // Simpan ke tabel orders
-    $query = "INSERT INTO orders (user_id, user_email, full_name, phone, address, city, postal_code, payment_method, total_price, order_date)
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
-    $stmt = $koneksi->prepare($query);
-    $stmt->bind_param(
-        "issssssis",
-        $user_id,
-        $user_email,
-        $full_name,
-        $phone,
-        $address,
-        $city,
-        $postal_code,
-        $payment_method,
-        $total_price
-    );
+    $stmt_order = $conn->prepare("INSERT INTO orders (user_id, full_name, phone, address, city, postal_code, payment_method, total_price, order_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+    $stmt_order->bind_param("issssssd", $user_id, $full_name, $phone, $address, $city, $postal_code, $payment_method, $total_price);
 
-    if ($stmt->execute()) {
-        $order_id = $stmt->insert_id;
+    if ($stmt_order->execute()) {
+        $order_id = $stmt_order->insert_id;
 
-        // Masukkan detail buku dari $_POST['book_ids']
-        foreach ($_POST['book_ids'] as $book_id => $qty) {
-            $book_id = intval($book_id);
-            $qty = intval($qty);
-            if ($qty <= 0) continue;
-
-            // Ambil harga dari database
-            $result = mysqli_query($koneksi, "SELECT price FROM books WHERE id = $book_id");
-            $book = mysqli_fetch_assoc($result);
-            if (!$book) continue;
-
-            $price = floatval($book['price']);
-
-            $query_item = "INSERT INTO order_items (order_id, book_id, quantity, price)
-                           VALUES (?, ?, ?, ?)";
-            $stmt_item = $koneksi->prepare($query_item);
-            $stmt_item->bind_param("iiid", $order_id, $book_id, $qty, $price);
+        // Simpan item satu per satu ke order_items (tanpa kolom subtotal)
+        $stmt_item = $conn->prepare("INSERT INTO order_items (order_id, book_id, quantity, price) VALUES (?, ?, ?, ?)");
+        foreach ($items as $item) {
+            $stmt_item->bind_param("iiid", $order_id, $item['book_id'], $item['quantity'], $item['price']);
             $stmt_item->execute();
         }
 
-        // Kosongkan keranjang di session kalau ada
+        // Hapus keranjang
         unset($_SESSION['cart']);
 
-        header("Location: thanks.php");
+        // Redirect ke halaman sukses
+        header("Location: thanks.php?order_id=" . $order_id);
         exit();
     } else {
-        echo "Gagal melakukan checkout: " . $stmt->error;
+        echo "Gagal menyimpan pesanan: " . $conn->error;
     }
-
-    $stmt->close();
+} else {
+    echo "Akses tidak valid.";
 }
-$koneksi->close();
 ?>

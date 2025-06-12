@@ -31,7 +31,9 @@ h2 {
     text-align: center;
     padding-left: 40px;
 }
-input[type="text"], input[type="email"] {
+input[type="text"],
+input[type="email"],
+select {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
@@ -39,10 +41,11 @@ input[type="text"], input[type="email"] {
     border-radius: 8px;
     font-size: 16px;
     transition: all 0.3s;
+    background-color: #fff;
 }
-
-    
-
+select {
+    appearance: none;
+}
 button {
     background-color: #007bff;
     color: #ffffff;
@@ -56,7 +59,7 @@ button {
     font-weight: 600;
 }
 button:hover {
-    background:#007bff
+    background: #0069d9;
 }
 .input-container {
     position: relative;
@@ -68,6 +71,7 @@ button:hover {
     transform: translateY(-50%);
     color: #999;
 }
-input[type="text"], input[type="email"] {
+input[type="text"],
+input[type="email"] {
     padding-left: 35px;
 }

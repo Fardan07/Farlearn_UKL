@@ -37,7 +37,7 @@ Halaman Users
                 <td>{$row['email']}</td>
                 <td>{$row['role']}</td>
                 <td>
-                    <a href='user_edit.php?id={$row['user_id']}'>Edit</a> 
+                    <a href='user_edit.php?user_id={$row['user_id']}'>Edit</a> 
                     <a href='user_delete.php?id={$row['user_id']}' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
                 </td>
               </tr>";

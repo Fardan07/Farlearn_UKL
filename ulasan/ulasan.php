@@ -49,7 +49,7 @@ include 'db.php';
 <header id="beranda">
     <div class="hero-text">
         <h1>FarLearn</h1>
-        <p>Artikel, jurnal, dan buku seputar lingkungan & sumber daya alam, semua dalam satu portal edukatif.</p>
+        <p> portal belajar seputar lingkungan dan sumber daya alam. Temukan inspirasi dan manfaatnya di sini!</p>
     </div>
 </header>
 
@@ -170,24 +170,44 @@ stars.forEach(star => {
 
 <!-- Footer -->
 <footer>
-    <div class="footer-content" id="kontak">
-        <div class="footer-section">
-            <h4>Tentang FarLearn</h4>
-            <p>Platform edukasi berbasis penelitian untuk pelestarian lingkungan dan sumber daya alam Indonesia.</p>
+    <section id="kontak" class="section">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Kontak</h4>
+                <ul>
+                    <li>Email: <a href="mailto:mafrdhan@gmail.com">mafrdhan@gmail.com</a></li>
+                    <li>Telepon: <a href="tel:+6281334097813">+62-813-3409-7813</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/6281334097813" target="_blank">Chat di WhatsApp</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Alamat</h4>
+                <ul>
+                    <li>
+                        <a href="https://www.google.com/maps/place/Sedati,+Sidoarjo,+Jawa+Timur" target="_blank">
+                            Jl. Raya Juanda No.17<br>
+                            Sedati, Sidoarjo, Jawa Timur
+                        </a>
+                    </li>
+                    <li>Indonesia</li>
+                    <li>Jam Operasional: Senin - Jumat, 08.00 - 17.00 WIB</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Media Sosial</h4>
+                <ul>
+                    <li><a href="https://instagram.com/farlearn.id" target="_blank">Instagram: @farlearn.id</a></li>
+                    <li><a href="https://facebook.com/farlearnindonesia" target="_blank">Facebook: FarLearn Indonesia</a></li>
+                    <li><a href="https://linkedin.com/company/farlearn" target="_blank">LinkedIn: FarLearn Official</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-section">
-            <h4>Hubungi Kami</h4>
-            <ul>
-                <li>Email: mafrdhan@gmail.com</li>
-                <li>Telepon: +62-813-3409-7813</li>
-                <li>Alamat: Sedati, Indonesia</li>
-            </ul>
+        <div class="footer-bottom">
+            <p>&copy; 2025 FarLearn. Hak Cipta Dilindungi.</p>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2024 FarLearn. Hak Cipta Dilindungi.</p>
-    </div>
+    </section>
 </footer>
+
 
 </main>
 </body>

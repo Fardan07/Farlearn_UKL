@@ -1,14 +1,26 @@
 <?php
-include 'db.php'; 
+session_start();
+include 'db.php'; // sesuai dengan login.php kamu
 
-$query = "SELECT name, amount FROM donations ORDER BY created_at DESC";
-$result = mysqli_query($conn, $query);
+// Cek apakah user sudah login
+if (!isset($_SESSION['email'])) {
+    echo "Anda harus login untuk melihat riwayat donasi.";
+    exit;
+}
+
+
+$email = $_SESSION['email'];
+
+
+$sql_donation = "SELECT * FROM donations WHERE email = '$email'";
+$result_donation = mysqli_query($conn, $sql_donation);
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Riwayat Donasi Di FarLearn</title>
+    <meta charset="UTF-8">
+    <title>Riwayat Donasi Anda</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,25 +50,55 @@ $result = mysqli_query($conn, $query);
         tr:hover {
             background-color: #f1f1f1;
         }
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto 0;
+            padding: 12px;
+            background-color: #2e8b57;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #256d47;
+        }
+        table { border-collapse: collapse; width: 80%; margin: auto; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+        h2 { text-align: center; }
     </style>
 </head>
 <body>
-    <h2>Riwayat Donasi Di FarLearn</h2>
+    <h2>Riwayat Donasi Anda</h2>
+
     <table>
-        <thead>
+        <tr>
+            <th>ID Donasi</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Jumlah</th>
+            <th>Pesan</th>
+            <th>Tanggal</th>
+        </tr>
+        <?php if ($result_donation && mysqli_num_rows($result_donation) > 0): ?>
+            <?php while ($row = mysqli_fetch_assoc($result_donation)): ?>
             <tr>
-                <th>Nama</th>
-                <th>Jumlah Donasi (Rp)</th>
+                <td><?= htmlspecialchars($row['id']) ?></td>
+                <td><?= htmlspecialchars($row['name']) ?></td>
+                <td><?= htmlspecialchars($row['email']) ?></td>
+                <td>Rp <?= number_format($row['amount'], 0, ',', '.') ?></td>
+                <td><?= htmlspecialchars($row['message']) ?></td>
+                <td><?= htmlspecialchars($row['created_at']) ?></td>
             </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['name']) ?></td>
-                    <td>Rp <?= number_format($row['amount'], 0, ',', '.') ?></td>
-                </tr>
             <?php endwhile; ?>
-        </tbody>
+        <?php else: ?>
+            <tr>
+                <td colspan="6">Belum ada donasi.</td>
+            </tr>
+        <?php endif; ?>
     </table>
+        <a href="donation.php" class="back-button">← Kembali</a>
 </body>
 </html>
