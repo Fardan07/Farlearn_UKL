@@ -19,11 +19,8 @@ if (!isset($_SESSION['email'])) {
         <img src="../front_web/farlearn.png" alt="Logo">
     </div>
     <ul>
-        <li><a href="#beranda">Beranda</a></li>
-        <li><a href="#artikel">Artikel</a></li>
-        <li><a href="#kontak">Kontak</a></li>
+        <li><a href="../UKL/ukl.php">Artikel</a></li>
         <li><a href="http://localhost/farlearn/Profil/about_farlearn.php">Tentang Website</a></li>
-        <li><a href="../donation/donation.php">Dukung Kami</a></li>
         <li><a href="../buku/books.php">Beli Buku</a></li>
         <li><a href="../ulasan/ulasan.php">Ulasan Tentang Web</a></li>
     </ul>

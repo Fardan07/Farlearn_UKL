@@ -45,7 +45,7 @@ nav ul {
     display: flex;
     justify-content: center;
     list-style: none;
-    gap: 40px;
+    gap: 70px;
 }
 
 nav a {
@@ -313,8 +313,36 @@ nav a:hover {
     align-items: center;
 }
 
+.notif-sukses {
+    position: fixed; /* Tambahkan ini */
+    top: 90px; /* Atur supaya muncul di bawah nav */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 15px;
+    z-index: 2000; /* Pastikan lebih tinggi dari nav */
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeInSlide 0.4s ease-out;
+    max-width: 600px;
+    width: 90%;
+}
 
 
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -10px); 
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);  
+    }
+}
 .nav-icons .icon {
     width: 45px;
     height: 45px;
@@ -403,4 +431,70 @@ footer {
     margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Styling ulang hero agar lebih hidup */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('../front_web/Background.png') center/cover no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 0 30px;
+    animation: fadeIn 1s ease-in;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    animation: fadeUp 1s ease forwards;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    line-height: 1.6;
+    animation: fadeUp 1.5s ease forwards;
+}
+
+.hero .cta-button {
+    display: inline-block;
+    padding: 14px 35px;
+    background-color: #2ecc71;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+    animation: fadeUp 2s ease forwards;
+}
+
+.hero .cta-button:hover {
+    background-color: #27ae60;
+    transform: scale(1.05);
+}
+
+/* Animasi */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+html, body {
+  overflow-x: hidden; /* Hilangkan scroll horizontal */
+}
+
+body {
+  position: relative;
 }

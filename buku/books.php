@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 include 'db.php';
@@ -14,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_to_cart"])) {
     } else {
         $_SESSION['cart'][$book_id] = 1;
     }
-    header("Location: books.php");
+    header("Location: books.php?added=1");
     exit();
 }
 
@@ -40,11 +38,10 @@ $result = mysqli_query($koneksi, "SELECT * FROM books");
             <img src="../front_web/farlearn.png" alt="Logo">
         </div>
         <ul>
-            <li><a href="#beranda">Beranda</a></li>
             <li><a href="../UKL/ukl.php">Artikel</a></li>
-            <li><a href="#kontak">Kontak</a></li>
             <li><a href="http://localhost/farlearn/Profil/about_farlearn.php">Tentang Website</a></li>
-            <li><a href="../donation/donation.php">Dukung Kami</a></li>
+             <li><a href="../buku/books.php">Beli Buku</a></li>
+            <li><a href="../donation/donation.php">Donasi</a></li>
             <li><a href="../ulasan/ulasan.php">Ulasan Tentang Web</a></li>
         </ul>
          <div class="nav-icons">
@@ -72,14 +69,17 @@ $result = mysqli_query($koneksi, "SELECT * FROM books");
 </div>
     </nav>
 
-    <header id="beranda">
-        <div class="hero-text">
-            <h1>FarLearn</h1>
-            <p>Buku dan referensi lingkungan lengkap dalam satu portal edukatif. Bantu kamu lebih peduli dan siap bertindak!</p>
-        </div>
-    </header>
+    <section class="hero">
+  <div class="hero-content">
+    <h1>Belanja Buku</h1>
+    <p>Jelajahi koleksi buku bertema lingkungan dan sumber daya alam yang mendalam, informatif, dan inspiratif.</p>
+    <a href="#daftar-buku" class="cta-button">Lihat Buku</a>
+  </div>
+</section>
 
-    <section class="section">
+
+
+    <section class="section" id="daftar-buku">
         <h2 class="section-title">Toko Buku FarLearn</h2>
         <div class="cards-container">
             <?php while ($book = mysqli_fetch_assoc($result)) { ?>
@@ -140,6 +140,18 @@ $result = mysqli_query($koneksi, "SELECT * FROM books");
         </div>
     </section>
 </footer>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('added') === '1') {
+        const notif = document.createElement('div');
+        notif.className = 'notif-sukses';
+        notif.innerText = "📚 Buku berhasil ditambahkan ke keranjang!";
+        document.body.insertBefore(notif, document.body.firstChild);
+        setTimeout(() => notif.remove(), 4000); 
+        window.history.replaceState(null, null, window.location.pathname);
+    }
+</script>
 
 </body>
 </html>

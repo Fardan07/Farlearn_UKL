@@ -19,13 +19,11 @@ session_start();
         <img src="../front_web/farlearn.png" alt="Logo">
     </div>
     <ul>
-        <li><a href="#beranda">Beranda</a></li>
-        <li><a href="#artikel">Artikel</a></li>
-        <li><a href="#kontak">Kontak</a></li>
-        <li><a href="http://localhost/farlearn/Profil/about_farlearn.php">Tentang Website</a></li>
-        <li><a href="../donation/donation.php">Dukung Kami</a></li>
-        <li><a href="../buku/books.php">Beli Buku</a></li>
-        <li><a href="../ulasan/ulasan.php">Ulasan Tentang Web</a></li>
+        <li><a href="../UKL/ukl.php">Artikel</a></li>
+            <li><a href="http://localhost/farlearn/Profil/about_farlearn.php">Tentang Website</a></li>
+             <li><a href="../buku/books.php">Beli Buku</a></li>
+            <li><a href="../donation/donation.php">Donasi</a></li>
+            <li><a href="../ulasan/ulasan.php">Ulasan Tentang Web</a></li>
     </ul>
 
      <!-- Bagian icon profil/login paling kanan -->
@@ -54,12 +52,15 @@ session_start();
 </div>
 
 </nav>
-    <header id="beranda">
-        <div class="hero-text">
-            <h1>FarLearn</h1>
-            <p>Artikel, jurnal, dan buku seputar lingkungan & sumber daya alam, semua dalam satu portal edukatif.</p>
-        </div>
-    </header>
+    <section class="hero">
+  <div class="hero-content">
+    <h1>FarLearn</h1>
+    <p>Temukan ribuan artikel, jurnal, dan buku tentang lingkungan dan sumber daya alam dalam satu tempat edukatif.</p>
+    <a href="#artikel" class="cta-button">Mulai Jelajahi</a>
+  </div>
+</section>
+
+
 
 <main>
 <section id="artikel" class="section">

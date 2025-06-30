@@ -1,12 +1,14 @@
 <?php
-include 'db.php';
-$id = intval($_GET['id']); // sanitasi sederhana
+include 'db.php'; // Pastikan path ke config.php benar
 
-// Hapus dulu data di tabel anak
-$conn->query("DELETE FROM checkout_presets WHERE user_id = $id");
+$id = $_GET['id'];
 
-// Baru hapus user
-$conn->query("DELETE FROM users WHERE user_id = $id");
+// Hapus dulu semua orders yang terkait dengan user ini
+mysqli_query($conn, "DELETE FROM orders WHERE user_id = '$id'");
 
-header("location:users.php");
+// Setelah itu baru hapus user-nya
+mysqli_query($conn, "DELETE FROM users WHERE user_id = '$id'");
+
+// Kembali ke halaman daftar user
+header("Location: users.php");
 ?>

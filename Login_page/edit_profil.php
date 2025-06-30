@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($stmt_update->execute()) {
             $_SESSION["name"] = $new_name;
             $_SESSION["email"] = $new_email;
-            $pesan = "✅ Profil berhasil diperbarui! Silakan logout dan login ulang menggunakan email baru.";
+            $pesan = "✅ Profil berhasil diperbarui! Silakan logout dan login ulang menggunakan email/nama baru.";
         } else {
             $pesan = "❌ Gagal memperbarui profil.";
         }

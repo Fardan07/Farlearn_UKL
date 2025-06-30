@@ -269,3 +269,77 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
+/* === Banner solidaritas === */
+.donation-form h2::before {
+    content: "🌪️ ";
+}
+
+.donation-form h2::after {
+    content: " 🤝";
+}
+
+.donation-form h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #388e3c;
+    margin-bottom: 20px;
+}
+
+.donation-form::before {
+    content: "Bantu Saudara Kita yang Terdampak Bencana Alam!";
+    display: block;
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Efek hover lebih smooth */
+.card-options .card:hover {
+    background-color: #e8f5e9;
+    border-color: #66bb6a;
+    transform: scale(1.03);
+}
+
+.card-options .card {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Tombol donasi lebih menonjol */
+.btn-donate {
+    background: linear-gradient(to right, #4CAF50, #66bb6a);
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+.btn-donate:hover {
+    background: linear-gradient(to right, #43a047, #81c784);
+}
+
+/* Animasi masuk form */
+.donation-form {
+    animation: fadeIn 0.7s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style tombol 'Kembali' dan 'History' */
+.btn-back {
+    background-color: #e0e0e0;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #d5d5d5;
+    transform: translateY(-2px);
+}

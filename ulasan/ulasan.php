@@ -23,12 +23,11 @@ include 'db.php';
         <img src="../front_web/farlearn.png" alt="Logo">
     </div>
     <ul>
-        <li><a href="#beranda">Beranda</a></li>
-        <li><a href="http://localhost/farlearn/UKL/ukl.php">Artikel</a></li>
-        <li><a href="#kontak">Kontak</a></li>
-        <li><a href="http://localhost/farlearn/Profil/about_farlearn.php">Tentang Website</a></li>
-        <li><a href="../donation/donation.php">Dukung Kami</a></li>
-        <li><a href="../buku/books.php">Beli Buku</a></li>
+        <li><a href="../UKL/ukl.php">Artikel</a></li>
+            <li><a href="http://localhost/farlearn/Profil/about_farlearn.php">Tentang Website</a></li>
+             <li><a href="../buku/books.php">Beli Buku</a></li>
+            <li><a href="../donation/donation.php">Donasi</a></li>
+            <li><a href="../ulasan/ulasan.php">Ulasan Tentang Web</a></li>
     </ul>
     <div class="nav-icons">
         <a href="http://localhost/farlearn/buku/books.php" class="icon-link">
@@ -46,14 +45,16 @@ include 'db.php';
     </div>
 </nav>
 
-<header id="beranda">
-    <div class="hero-text">
-        <h1>FarLearn</h1>
-        <p> portal belajar seputar lingkungan dan sumber daya alam. Temukan inspirasi dan manfaatnya di sini!</p>
-    </div>
-</header>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Komentar Pengguna</h1>
+    <p>Dengarkan pendapat dan pengalaman pengguna lain tentang FarLearn. Jadilah bagian dari komunitas pembelajar!</p>
+    <a href="#ulasan-main" class="cta-button">Lihat Ulasan</a>
+  </div>
+</section>
 
-<main>
+
+<main class="ulasan-main" id="ulasan-main">
 <?php
 // Simpan ulasan baru
 if (isset($_POST['submit'])) {

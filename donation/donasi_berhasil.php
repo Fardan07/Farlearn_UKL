@@ -26,7 +26,7 @@ $stmt->bind_param("sssds", $name, $email, $message, $amount, $payment_method);
 if ($stmt->execute()) {
     echo "<div class='container'><div class='success-message'>
             <h1>Terima Kasih!</h1>
-            <p>Donasi sebesar <strong>Rp" . number_format($amount, 3, ',', '.') . "</strong> telah berhasil dikirim.</p>
+            <p>Donasi sebesar <strong>Rp" . number_format($amount, 0, ',', '.') . "</strong> telah berhasil dikirim.</p>
             <a href='donation.php' class='btn'>Donasi Lagi</a>
         </div></div>";
 } else {
